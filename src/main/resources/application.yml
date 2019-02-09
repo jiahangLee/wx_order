@@ -1,0 +1,41 @@
+spring:
+  profiles:        #dev模式
+    active: dev
+  jpa:            #jpa配置
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #设置方言解决无外键问题
+  datasource:      #数据库连接池配置
+    name: mysql
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+          filters: stat
+          driver-class-name: com.mysql.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/20190209?useUnicode=true&characterEncoding=utf-8&useSSL=false&amp;useOldAliasMetadataBehavior=true
+          username: root
+          password:
+#          password: 123456
+          initial-size: 1
+          min-idle: 1
+          max-active: 20
+          max-wait: 6000
+          time-between-eviction-runs-millis: 60000
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 'X'
+          test-on-borrow: false
+          test-on-return: false
+          pool-prepared-statements: false
+          max-pool-prepared-statement-per-connection-size: 20
+mybatis:
+  mapper-locations: classpath:mapper/UserMapper.xml
+  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: com.jiahanglee.journey.entity  # 注意：对应实体类的路径
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    returnPageInfo: check
