@@ -39,3 +39,9 @@ pagehelper:
     supportMethodsArguments: true
     params: count=countSql
     returnPageInfo: check
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  path: C:\Users\PC\Desktop\log
+#  level:
+#    com.jiahanglee: debug
