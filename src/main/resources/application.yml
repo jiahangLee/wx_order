@@ -2,8 +2,8 @@ spring:
   profiles:        #dev模式
     active: dev
   jpa:            #jpa配置
-    hibernate:
-      ddl-auto: update
+#    hibernate:
+#      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #设置方言解决无外键问题
   datasource:      #数据库连接池配置
@@ -12,10 +12,10 @@ spring:
     druid:
           filters: stat
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/20190209?useUnicode=true&characterEncoding=utf-8&useSSL=false&amp;useOldAliasMetadataBehavior=true
+          url: jdbc:mysql://192.168.199.105:3306/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false&amp;useOldAliasMetadataBehavior=true
           username: root
-          password:
-#          password: 123456
+#          password:
+          password: 123456
           initial-size: 1
           min-idle: 1
           max-active: 20
