@@ -16,3 +16,6 @@
  * @Data是lombok包的注解
  * 断言的简单使用
  * 单元测试Junit4
+ * BeanUtils.copyProperties
+    * 可以直接copy对象中的内容
+    * 过滤采用stream
