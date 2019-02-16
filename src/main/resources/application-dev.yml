@@ -1,7 +1,7 @@
 server:
   port: 8001
   servlet:
-    context-path: /dev
+    context-path: /sell
 girl:
     cupSize: B
     age: 18

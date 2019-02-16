@@ -45,3 +45,7 @@ pagehelper:
 #  path: C:\Users\PC\Desktop\log
 #  level:
 #    com.jiahanglee: debug
+
+#server:
+#  servlet:
+#    context-path: /sell
