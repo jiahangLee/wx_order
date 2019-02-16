@@ -2,12 +2,16 @@ package com.jiahanglee.journey.dataservice.impl;
 
 import com.jiahanglee.journey.dataobject.ProductInfo;
 import com.jiahanglee.journey.dataservice.ProductService;
+import com.jiahanglee.journey.dto.CatDTO;
 import com.jiahanglee.journey.enums.ProductStatusEnum;
+import com.jiahanglee.journey.enums.ResultEnum;
+import com.jiahanglee.journey.exception.SellException;
 import com.jiahanglee.journey.repository.ProductInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,5 +44,27 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductInfo save(ProductInfo productInfo) {
         return productInfoRepository.save(productInfo);
+    }
+
+    @Override
+    public void increaseStock(List<CatDTO> catDTOList) {
+
+    }
+
+    @Override
+    @Transactional
+    public void decreaseStock(List<CatDTO> catDTOList) {
+        for(CatDTO catDTO:catDTOList){
+            ProductInfo productInfo = productInfoRepository.findById(catDTO.getProductId()).get();
+            if(productInfo == null){
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStock() - catDTO.getProductQuantity();
+            if(result < 0){
+                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+            productInfo.setProductStock(result);
+            productInfoRepository.save(productInfo);
+        }
     }
 }

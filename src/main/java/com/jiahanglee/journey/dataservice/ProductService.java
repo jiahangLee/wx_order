@@ -1,6 +1,7 @@
 package com.jiahanglee.journey.dataservice;
 
 import com.jiahanglee.journey.dataobject.ProductInfo;
+import com.jiahanglee.journey.dto.CatDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,7 @@ public interface ProductService {
 
     ProductInfo save(ProductInfo productInfo);
     //加减库存
+    void increaseStock(List<CatDTO> catDTOList);
+    void decreaseStock(List<CatDTO> catDTOList);
+
 }

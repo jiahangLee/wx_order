@@ -19,3 +19,6 @@
  * BeanUtils.copyProperties
     * 可以直接copy对象中的内容
     * 过滤采用stream
+ * 随机数random
+ * 断点调试
+ * 断言到底是检测什么？
