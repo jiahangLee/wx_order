@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Auther: jiahangLee
@@ -48,7 +49,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void increaseStock(List<CatDTO> catDTOList) {
+        for(CatDTO catDTO:catDTOList){
+            Optional<ProductInfo> productInfoOptional = productInfoRepository.findById(catDTO.getProductId());
+            if(productInfoOptional.isPresent()){
+                ProductInfo productInfo = productInfoOptional.get();
+                Integer result = productInfo.getProductStock() + catDTO.getProductQuantity();
+                productInfo.setProductStock(result);
+                productInfoRepository.save(productInfo);
+            }else{
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
 
+        }
     }
 
     @Override
