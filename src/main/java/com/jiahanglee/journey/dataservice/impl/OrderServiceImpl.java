@@ -16,7 +16,6 @@ import com.jiahanglee.journey.repository.OrderDetailRepository;
 import com.jiahanglee.journey.repository.OrderMasterRepository;
 import com.jiahanglee.journey.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.omg.PortableInterceptor.ObjectReferenceFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,8 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -37,8 +36,9 @@ import java.util.stream.Collectors;
  * @Description: //TODO
  * @version: V1.0
  */
-@Service
+
 @Slf4j
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -86,16 +86,18 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO findOne(String orderId) {
 
-        OrderMaster orderMaster = orderMasterRepository.findById(orderId).get();
-        if(orderMaster == null){
+        Optional<OrderMaster> option = orderMasterRepository.findById(orderId);
+        OrderMaster orderMaster = new OrderMaster();
+        if (!option.isPresent())
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
-        }
+        else
+            orderMaster = option.get();
         List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId(orderId);
-        if(CollectionUtils.isEmpty(orderDetailList)){
+        if (CollectionUtils.isEmpty(orderDetailList)) {
             throw new SellException(ResultEnum.ORDER_DETAIL_NOT_EXIST);
         }
         OrderDTO orderDTO = new OrderDTO();
-        BeanUtils.copyProperties(orderMaster,orderDTO);
+        BeanUtils.copyProperties(orderMaster, orderDTO);
         orderDTO.setOrderDetails(orderDetailList);
         return orderDTO;
     }
@@ -104,7 +106,7 @@ public class OrderServiceImpl implements OrderService {
     public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
         Page<OrderMaster> orderMasters = orderMasterRepository.findByBuyerOpenid(buyerOpenid, pageable);
         List<OrderDTO> orderDTOS = OrderMaster2OrderDTOConverter.convert(orderMasters.getContent());
-        Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOS,pageable,orderMasters.getTotalElements());
+        Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOS, pageable, orderMasters.getTotalElements());
         return orderDTOPage;
     }
 
@@ -113,30 +115,29 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO cancel(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
 
-        if(!orderDTO.getOrderStatus().equals(OrderStatusEnum.New.getCode())){
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.New.getCode())) {
             log.info("【取消订单】订单状态不正常");
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
         orderDTO.setOrderStatus(OrderStatusEnum.CANCEL.getCode());
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         OrderMaster updateResult = orderMasterRepository.save(orderMaster);
-        if(updateResult == null){
+        if (updateResult == null) {
             log.error("【取消订单】更新失败");
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
         }
 
-        if(CollectionUtils.isEmpty(orderDTO.getOrderDetails())){
+        if (CollectionUtils.isEmpty(orderDTO.getOrderDetails())) {
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
         }
         List<CatDTO> catDTOs = orderDTO.getOrderDetails().stream()
-                .map(e -> new CatDTO(e.getProductId(),e.getProductQuantity()))
+                .map(e -> new CatDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.increaseStock(catDTOs);
 
-        if(orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
+        if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
             //TODO
         }
-
 
 
         return orderDTO;
@@ -145,15 +146,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDTO finish(OrderDTO orderDTO) {
-        if(!orderDTO.getOrderStatus().equals(OrderStatusEnum.New.getCode())){
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.New.getCode())) {
             log.error("");
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
         orderDTO.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
         OrderMaster orderMaster = new OrderMaster();
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         OrderMaster updateResult = orderMasterRepository.save(orderMaster);
-        if(updateResult == null){
+        if (updateResult == null) {
             log.error("");
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
         }
@@ -164,19 +165,19 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDTO pay(OrderDTO orderDTO) {
-        if(!orderDTO.getOrderStatus().equals(OrderStatusEnum.New.getCode())){
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.New.getCode())) {
             log.error("");
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
-        if(!orderDTO.getPayStatus().equals(PayStatusEnum.WAIT.getCode())){
+        if (!orderDTO.getPayStatus().equals(PayStatusEnum.WAIT.getCode())) {
             log.error("");
             throw new SellException(ResultEnum.ORDER_PAY_ERROR);
         }
         orderDTO.setPayStatus(PayStatusEnum.SUCCESS.getCode());
         OrderMaster orderMaster = new OrderMaster();
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         OrderMaster updateResult = orderMasterRepository.save(orderMaster);
-        if(updateResult == null){
+        if (updateResult == null) {
             log.error("");
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
         }

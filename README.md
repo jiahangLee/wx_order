@@ -27,4 +27,8 @@
         * 无用的断言    
  * 关于错误
     * 就是{日志+异常}
- * 转换类converter2   
+ * 转换类converter2  
+ * java8新特性
+    * Option可以接受null
+    * stream流用来过滤筛选数据形成新列表，不能替代for循环？
+        * foreach不能返回 

@@ -1,13 +1,10 @@
 package com.jiahanglee.journey.entity;
 
-import netscape.security.Privilege;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * code is far away from bug with the animal protecting
