@@ -1,6 +1,7 @@
 package com.jiahanglee.journey.datacontroller;
 
 import com.jiahanglee.journey.converter.OrderForm2OrderDTOConverter;
+import com.jiahanglee.journey.dataservice.BuyerService;
 import com.jiahanglee.journey.dataservice.OrderService;
 import com.jiahanglee.journey.dto.OrderDTO;
 import com.jiahanglee.journey.enums.ResultEnum;
@@ -34,59 +35,67 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private BuyerService buyerService;
+
     //创建订单
     @PostMapping("/create")
     public ResultVo create(@Valid OrderForm orderForm, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             log.error("");
-            throw new SellException(bindingResult.getFieldError().getDefaultMessage(),ResultEnum.PARAM.getCode());
+            throw new SellException(bindingResult.getFieldError().getDefaultMessage(), ResultEnum.PARAM.getCode());
         }
 
         OrderDTO orderDTO = OrderForm2OrderDTOConverter.converter(orderForm);
-        if(CollectionUtils.isEmpty(orderDTO.getOrderDetails())){
+        if (CollectionUtils.isEmpty(orderDTO.getOrderDetails())) {
             log.error("");
             throw new SellException(ResultEnum.CART_NOT_NULL);
         }
         OrderDTO orderDTO1 = orderService.create(orderDTO);
-        Map<String,String> map = new HashMap<>();
-        map.put("orderId",orderDTO1.getOrderId());
+        Map<String, String> map = new HashMap<>();
+        map.put("orderId", orderDTO1.getOrderId());
 
         return ResultVoUtil.success(map);
     }
+
     //订单列表
     @GetMapping("/list")
     public ResultVo List(
             @RequestParam("openid") String openid,
-            @RequestParam(value = "page",defaultValue = "0") Integer page,
-            @RequestParam(value = "size",defaultValue = "5") Integer size
-    ){
-        if(StringUtils.isEmpty(openid)){
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "5") Integer size
+    ) {
+        if (StringUtils.isEmpty(openid)) {
             log.error("");
 //            throw new SellException()
         }
-        PageRequest request = new PageRequest(page,size);
-        Page<OrderDTO> orderDTOS = orderService.findList(openid,request);
+        PageRequest request = new PageRequest(page, size);
+        Page<OrderDTO> orderDTOS = orderService.findList(openid, request);
         return ResultVoUtil.success(orderDTOS.getContent());
     }
+
     //订单详情
     @GetMapping("/detail")
     public ResultVo detail(
-            @RequestParam(value = "openid",required = false) String openid,
+            @RequestParam(value = "openid", required = false) String openid,
             @RequestParam("orderId") String orderId
-    ){
-        // 检验openid
-        OrderDTO orderDTO = orderService.findOne(orderId);
+    ) {
+//        // 检验openid
+//        OrderDTO orderDTO = orderService.findOne(orderId);
+        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
         return ResultVoUtil.success(orderDTO);
     }
+
     //取消订单
     @PostMapping("/cancel")
     public ResultVo cancel(
-            @RequestParam(value = "openid",required = false)String openid,
-            @RequestParam(value= "orderId")String orderId
-    ){
-        OrderDTO orderDTO = orderService.findOne(orderId);
-        orderService.cancel(orderDTO);
-        return ResultVoUtil.success(orderDTO);
+            @RequestParam(value = "openid", required = false) String openid,
+            @RequestParam(value = "orderId") String orderId
+    ) {
+//        OrderDTO orderDTO = orderService.findOne(orderId);
+//        orderService.cancel(orderDTO);
+        buyerService.cancelOrder(openid, orderId);
+        return ResultVoUtil.success();
     }
 }
