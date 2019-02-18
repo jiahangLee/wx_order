@@ -1,6 +1,10 @@
 spring:
   profiles:        #dev模式
     active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
   jpa:            #jpa配置
 #    hibernate:
 #      ddl-auto: update
@@ -12,7 +16,7 @@ spring:
     druid:
           filters: stat
           driver-class-name: com.mysql.jdbc.Driver
-          url: jdbc:mysql://192.168.199.105:3306/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false&amp;useOldAliasMetadataBehavior=true
+          url: jdbc:mysql://192.168.199.105:3306/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false
           username: root
 #          password:
           password: 123456
