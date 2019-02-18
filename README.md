@@ -40,3 +40,13 @@
  * 时间戳修改格式
  * null值不返回
  * gson的简单使用
+## 问题 
+ * http://192.168.199.105/sell/buyer/product/list为什么能访问？
+    * 请求转发可以让192.168.199.105（nginx上的location）主机上访问sell和被转发的主机返回一样的值
+ * 改为8080后可以为http://sell22.com/sell/buyer/product/list？
+    * 和8080没有关系
+ * sell22.com为什么不能访问？
+    * 理论上有cookie都能访问，不会跳转
+        * 域名和ip都要设置一遍cookie
+ * 理论上是正确的就试3遍
+    * 因为机器会有延迟或其他缓存等等
