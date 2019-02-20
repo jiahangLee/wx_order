@@ -5,3 +5,6 @@ server:
 girl:
     cupSize: B
     age: 18
+wechat:
+  myAppId: wxe0ce3eb470a3e06a
+  myAppSecret: b7411b113cc0ddbb7b5c8883db86f432
