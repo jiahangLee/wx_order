@@ -87,7 +87,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO findOne(String orderId) {
 
         Optional<OrderMaster> option = orderMasterRepository.findById(orderId);
-        OrderMaster orderMaster = new OrderMaster();
+        OrderMaster orderMaster;
         if (!option.isPresent())
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
         else
