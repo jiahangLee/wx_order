@@ -14,6 +14,7 @@ import com.jiahanglee.journey.enums.ResultEnum;
 import com.jiahanglee.journey.exception.SellException;
 import com.jiahanglee.journey.repository.OrderDetailRepository;
 import com.jiahanglee.journey.repository.OrderMasterRepository;
+import com.jiahanglee.journey.services.PayService;
 import com.jiahanglee.journey.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -47,7 +48,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailRepository orderDetailRepository;
     @Autowired
     private OrderMasterRepository orderMasterRepository;
-
+    @Autowired
+    private PayService payService;
     @Override
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
@@ -136,7 +138,7 @@ public class OrderServiceImpl implements OrderService {
         productService.increaseStock(catDTOs);
 
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-            //TODO
+            payService.refund(orderDTO);
         }
 
 

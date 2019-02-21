@@ -2,6 +2,7 @@ package com.jiahanglee.journey.services;
 
 import com.jiahanglee.journey.dto.OrderDTO;
 import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.model.RefundRequest;
 
 /**
  * @Auther: jiahangLee
@@ -13,4 +14,6 @@ public interface PayService {
     PayResponse create(OrderDTO orderDTO);
 
     PayResponse notify(String notifyDate);
+
+    RefundRequest refund(OrderDTO orderDTO);
 }

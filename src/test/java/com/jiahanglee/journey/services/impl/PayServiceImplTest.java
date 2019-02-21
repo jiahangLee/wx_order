@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
@@ -31,5 +32,17 @@ public class PayServiceImplTest {
     public void create() {
         OrderDTO orderDTO = orderService.findOne("1550487365779596736");
         payService.create(orderDTO);
+    }
+
+    @Test
+    public void create1() {
+    }
+
+
+    @Test
+    public void refund() {
+
+        OrderDTO orderDTO = orderService.findOne("1550487104154674813");
+        payService.refund(orderDTO);
     }
 }

@@ -12,6 +12,7 @@ wechat:
 
   mchId: 1483469312
   mchKey: C5245D70627C1F8E9964D494B0735025
-  keyPath: /sell/h5.p12
+  keyPath: C:/Users/PC/Desktop/h5.p12
 
   notifyUrl: http://jiahanglee.natapp1.cc/sell/pay/notify
+

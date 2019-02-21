@@ -1,0 +1,62 @@
+Starting loggerTest on DESKTOP-CB0ULG3 with PID 9752 (started by jiahangLee in C:\Users\PC\Desktop\wx_order)
+The following profiles are active: dev
+Refreshing org.springframework.web.context.support.GenericWebApplicationContext@68034211: startup date [Thu Feb 14 00:35:41 CST 2019]; root of context hierarchy
+Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$90039060] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+Init DruidDataSource
+{dataSource-1} inited
+Building JPA container EntityManagerFactory for persistence unit 'default'
+HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+HHH000412: Hibernate Core {5.2.17.Final}
+HHH000206: hibernate.properties not found
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+Initialized JPA EntityManagerFactory for persistence unit 'default'
+Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@68034211: startup date [Thu Feb 14 00:35:41 CST 2019]; root of context hierarchy
+spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+Mapped "{[/hay],methods=[GET]}" onto public java.lang.String com.jiahanglee.journey.controller.Hay.say()
+Mapped "{[/all],methods=[GET]}" onto public java.lang.Object com.jiahanglee.journey.controller.UserController.findAllUser(int,int)
+Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Started loggerTest in 14.679 seconds (JVM running for 17.358)
+我是info
+我是error
+name:jiahanglee,password:123
+Closing org.springframework.web.context.support.GenericWebApplicationContext@68034211: startup date [Thu Feb 14 00:35:41 CST 2019]; root of context hierarchy
+Closing JPA EntityManagerFactory for persistence unit 'default'
+{dataSource-1} closed
+Starting loggerTest on DESKTOP-CB0ULG3 with PID 12200 (started by jiahangLee in C:\Users\PC\Desktop\wx_order)
+The following profiles are active: dev
+Refreshing org.springframework.web.context.support.GenericWebApplicationContext@518caac3: startup date [Thu Feb 14 00:39:18 CST 2019]; root of context hierarchy
+Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ac49b766] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+Init DruidDataSource
+{dataSource-1} inited
+Building JPA container EntityManagerFactory for persistence unit 'default'
+HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+HHH000412: Hibernate Core {5.2.17.Final}
+HHH000206: hibernate.properties not found
+HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+Initialized JPA EntityManagerFactory for persistence unit 'default'
+Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Looking for @ControllerAdvice: org.springframework.web.context.support.GenericWebApplicationContext@518caac3: startup date [Thu Feb 14 00:39:18 CST 2019]; root of context hierarchy
+spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+Mapped "{[/hay],methods=[GET]}" onto public java.lang.String com.jiahanglee.journey.controller.Hay.say()
+Mapped "{[/all],methods=[GET]}" onto public java.lang.Object com.jiahanglee.journey.controller.UserController.findAllUser(int,int)
+Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+Started loggerTest in 15.183 seconds (JVM running for 17.901)
+我是info
+我是error
+name:jiahanglee,password:123
+Closing org.springframework.web.context.support.GenericWebApplicationContext@518caac3: startup date [Thu Feb 14 00:39:18 CST 2019]; root of context hierarchy
+Closing JPA EntityManagerFactory for persistence unit 'default'
+{dataSource-1} closed
