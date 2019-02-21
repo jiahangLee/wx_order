@@ -1,29 +1,29 @@
-<script>
-    function onBridgeReady(){
-        WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-                "appId":"wxd898fcb01713c658",     //公众号名称，由商户传入
-                "timeStamp":"1550675653",         //时间戳，自1970年以来的秒数
-                "nonceStr":"Rx4hQLbiNAnOMcFH", //随机串
-                "package":"prepay_id=wx20231414597697034fb0b8331767318422",
-                "signType":"MD5",         //微信签名方式：
-                "paySign":"6A51BC231E5705B771DD0E31E21CC4A8" //微信签名
-            },
-            function(res){
-                if(res.err_msg == "get_brand_wcpay_request:ok" ){
-                    // 使用以上方式判断前端返回,微信团队郑重提示：
-                    //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-                }
-            });
-    }
-    if (typeof WeixinJSBridge == "undefined"){
-        if( document.addEventListener ){
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        }else if (document.attachEvent){
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-        }
-    }else{
-        onBridgeReady();
-    }
-</script>
+<!--<script>-->
+    <!--function onBridgeReady(){-->
+        <!--WeixinJSBridge.invoke(-->
+            <!--'getBrandWCPayRequest', {-->
+                <!--"appId":"wxd898fcb01713c658",     //公众号名称，由商户传入-->
+                <!--"timeStamp":"1550737747",         //时间戳，自1970年以来的秒数-->
+                <!--"nonceStr":"R6bgBOeyVdNLG3Ie", //随机串-->
+                <!--"package":"prepay_id=wx2116290951873933446a4dd51388400503",-->
+                <!--"signType":"MD5",         //微信签名方式：-->
+                <!--"paySign":"A9FF6F0628F27F555E86ACFF25DCF2F8" //微信签名-->
+            <!--},-->
+            <!--function(res){-->
+                <!--if(res.err_msg == "get_brand_wcpay_request:ok" ){-->
+                    <!--// 使用以上方式判断前端返回,微信团队郑重提示：-->
+                    <!--//res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。-->
+                <!--}-->
+            <!--});-->
+    <!--}-->
+    <!--if (typeof WeixinJSBridge == "undefined"){-->
+        <!--if( document.addEventListener ){-->
+            <!--document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);-->
+        <!--}else if (document.attachEvent){-->
+            <!--document.attachEvent('WeixinJSBridgeReady', onBridgeReady);-->
+            <!--document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);-->
+        <!--}-->
+    <!--}else{-->
+        <!--onBridgeReady();-->
+    <!--}-->
+<!--</script>-->

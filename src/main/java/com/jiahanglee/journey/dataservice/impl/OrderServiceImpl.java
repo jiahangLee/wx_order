@@ -170,7 +170,7 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
         if (!orderDTO.getPayStatus().equals(PayStatusEnum.WAIT.getCode())) {
-            log.error("");
+            log.error("订单的支付状态不为0");
             throw new SellException(ResultEnum.ORDER_PAY_ERROR);
         }
         orderDTO.setPayStatus(PayStatusEnum.SUCCESS.getCode());
