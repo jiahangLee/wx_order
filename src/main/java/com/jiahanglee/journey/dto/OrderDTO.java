@@ -1,11 +1,14 @@
 package com.jiahanglee.journey.dto;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.jiahanglee.journey.dataobject.OrderDetail;
 import com.jiahanglee.journey.enums.OrderStatusEnum;
 import com.jiahanglee.journey.enums.PayStatusEnum;
 import com.jiahanglee.journey.utils.Date2LongUtil;
+import com.jiahanglee.journey.utils.EnumUtil;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -35,4 +38,12 @@ public class OrderDTO {
     private Date updateTime;
     // 通过new ArrayList（）返回[]
     private List<OrderDetail> orderDetails;
+    @JsonIgnore
+    public  OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+    }
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus,PayStatusEnum.class);
+    }
 }
