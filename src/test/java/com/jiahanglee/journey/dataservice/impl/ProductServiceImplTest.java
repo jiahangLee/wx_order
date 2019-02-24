@@ -1,6 +1,7 @@
 package com.jiahanglee.journey.dataservice.impl;
 
 import com.jiahanglee.journey.dataobject.ProductInfo;
+import com.jiahanglee.journey.enums.ProductStatusEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,15 @@ public class ProductServiceImplTest {
 
         ProductInfo productInfo1 = productService.save(productInfo);
         assertNotEquals(0,productInfo1);
+    }
+    @Test
+    public void onSale() {
+        ProductInfo productInfo = productService.onSale("123456");
+        assertNotEquals(ProductStatusEnum.UP,productInfo.getProductStatus());
+    }
+    @Test
+    public void offSale() {
+        ProductInfo productInfo = productService.offSale("123456");
+        assertNotEquals(ProductStatusEnum.DOWN,productInfo.getProductStatus());
     }
 }

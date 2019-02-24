@@ -20,7 +20,10 @@ public enum ResultEnum {
     PARAM(17,"参数不正确"),
     ORDER_UPDATE_ERROR(16,"订单更新失败"),
     CONVERTER_ERROR(18,"参数转换错误"),
+    PRODUCT_UP(20,"商品已上架"),
+    PRODUCT_OFF(21,"商品已下架"),
     CART_NOT_NULL(19,"购物车不能为空");
+
 
     private Integer code;
     private String message;
