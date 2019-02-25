@@ -20,3 +20,7 @@ wechat:
 
   notifyUrl: http://jiahanglee.natapp1.cc/sell/pay/notify
 
+project-config:
+  wechatMpAuthorize: http://jiahanglee.natapp1.cc
+  wechatOpenAuthorize: http://jiahanglee.natapp1.cc
+  sell:

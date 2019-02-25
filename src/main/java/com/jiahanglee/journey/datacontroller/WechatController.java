@@ -1,5 +1,6 @@
 package com.jiahanglee.journey.datacontroller;
 
+import com.jiahanglee.journey.config.ProjectUrl;
 import com.jiahanglee.journey.config.WechatMpConfig;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.api.WxConsts;
@@ -26,13 +27,15 @@ import java.net.URLEncoder;
 public class WechatController {
 
     @Autowired
+    private ProjectUrl projectConfigUrl;
+    @Autowired
     private  WxMpService wxOpenService;
     @Autowired
     private WxMpService wxMpService;
     @GetMapping("/authorize")
     public String  authorize(@RequestParam("returnUrl") String returnUrl){
 
-        String url = "http://jiahanglee.natapp1.cc/sell/wechat/userInfo";
+        String url = projectConfigUrl.wechatMpAuthorize+"/sell/wechat/userInfo";
         String  redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_BASE, URLEncoder.encode(returnUrl));
         return "redirect:"+redirectUrl;
     }
@@ -54,7 +57,7 @@ public class WechatController {
 
     @GetMapping("/qrAuthorize")
     public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
-        String url = "http://jiahanglee.natapp1.cc/sell/wechat/qrUserInfo";
+        String url = projectConfigUrl.wechatOpenAuthorize+"/sell/wechat/qrUserInfo";
         String redirectUrl = wxOpenService.buildQrConnectUrl(url,WxConsts.QrConnectScope.SNSAPI_LOGIN,URLEncoder.encode(returnUrl));
 
         return "redirect:"+redirectUrl;
