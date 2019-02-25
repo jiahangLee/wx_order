@@ -75,7 +75,7 @@ public class WechatController {
         }
         log.info("wxMpOAuth2AccessToken={}",wxMpOAuth2AccessToken);
         String openid = wxMpOAuth2AccessToken.getOpenId();
-        String returnUrl = "http://imooc.com";
+        String returnUrl = projectConfigUrl.sell+"/sell/seller/login";
         return "redirect:"+returnUrl+"?openid="+openid;
     }
 }

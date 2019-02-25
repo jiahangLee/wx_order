@@ -10,6 +10,9 @@ spring:
 #      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #设置方言解决无外键问题
+  redis:
+    host: 192.168.199.105
+    port: 6379
   datasource:      #数据库连接池配置
     name: mysql
     type: com.alibaba.druid.pool.DruidDataSource

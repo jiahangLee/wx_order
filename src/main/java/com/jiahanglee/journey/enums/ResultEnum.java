@@ -22,7 +22,10 @@ public enum ResultEnum {
     CONVERTER_ERROR(18,"参数转换错误"),
     PRODUCT_UP(20,"商品已上架"),
     PRODUCT_OFF(21,"商品已下架"),
-    CART_NOT_NULL(19,"购物车不能为空");
+    CART_NOT_NULL(19,"购物车不能为空"),
+    LOGIN_FALSE(23,"登录失败，信息不正确"),
+    LOGIN_SUCCESS(24,"登出成功"),
+    ;
 
 
     private Integer code;
