@@ -6,19 +6,19 @@ girl:
     cupSize: B
     age: 18
 wechat:
-#  myAppId: wxe0ce3eb470a3e06a
-#  myAppSecret: b7411b113cc0ddbb7b5c8883db86f432
+  myAppId: wxe0ce3eb470a3e06a
+  myAppSecret: b7411b113cc0ddbb7b5c8883db86f432
 
-  myAppId: wxd898fcb01713c658
-
-  openAppId: wx6ad144e54af67d87
-  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
-
-  mchId: 1483469312
-  mchKey: C5245D70627C1F8E9964D494B0735025
-  keyPath: C:/Users/PC/Desktop/h5.p12
-
-  notifyUrl: http://jiahanglee.natapp1.cc/sell/pay/notify
+#  myAppId: wxd898fcb01713c658
+#
+#  openAppId: wx6ad144e54af67d87
+#  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+#
+#  mchId: 1483469312
+#  mchKey: C5245D70627C1F8E9964D494B0735025
+#  keyPath: C:/Users/PC/Desktop/h5.p12
+#
+#  notifyUrl: http://jiahanglee.natapp1.cc/sell/pay/notify
 
 project-config:
   wechatMpAuthorize: http://jiahanglee.natapp1.cc
