@@ -15,6 +15,7 @@ import com.jiahanglee.journey.exception.SellException;
 import com.jiahanglee.journey.repository.OrderDetailRepository;
 import com.jiahanglee.journey.repository.OrderMasterRepository;
 import com.jiahanglee.journey.services.PayService;
+import com.jiahanglee.journey.services.WebSocket;
 import com.jiahanglee.journey.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -42,6 +43,8 @@ import java.util.stream.Collectors;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
+    private WebSocket webSocket;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -82,6 +85,7 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
         productService.decreaseStock(catDTOS);
 
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
