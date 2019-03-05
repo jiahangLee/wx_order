@@ -68,3 +68,11 @@
     * 手机抓包是为了让电脑代替手机发送请求，因为电脑上设置了host   
  webSocket
     * 需要加心跳吗   
+ * 数据格式
+    * json是不是formdata   
+ * redis
+    * redis分布式session
+    * redis分布式锁
+    * redis缓存  
+ * ResponseStatus改变返回值
+ * 过时方法看源码       
